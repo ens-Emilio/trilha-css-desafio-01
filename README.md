@@ -153,8 +153,8 @@ JPEG de 1920px de largura:
 | **Otimizada** | **1920×1281 JPEG** | **276 KB** |
 
 **83× menor (98,8% de redução)**, com a pasta de imagens inteira caindo de
-~23,8 MB para 800 KB. Para uma imagem de fundo coberta por gradiente e texto,
-a diferença visual é imperceptível.
+~23,8 MB para **786 KB**. Para uma imagem de fundo coberta por gradiente e
+texto, a diferença visual é imperceptível.
 
 ---
 
