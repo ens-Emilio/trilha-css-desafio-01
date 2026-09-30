@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img"
+     aria-label="Pessoa de chapéu de palha trabalhando em uma plantação ao pôr do sol, com fileiras de cultivo em primeiro plano">
+  <defs>
+    <linearGradient id="ceu2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0b1a10"/>
+      <stop offset="30%" stop-color="#1d3a24"/>
+      <stop offset="58%" stop-color="#6b5a24"/>
+      <stop offset="78%" stop-color="#d99342"/>
+      <stop offset="100%" stop-color="#f0c070"/>
+    </linearGradient>
+    <linearGradient id="chao" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4a6b28"/>
+      <stop offset="45%" stop-color="#2b421a"/>
+      <stop offset="100%" stop-color="#111d0c"/>
+    </linearGradient>
+    <radialGradient id="luz" cx="72%" cy="62%" r="45%">
+      <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#fbbf24" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#ceu2)"/>
+
+  <!-- sol -->
+  <circle cx="1150" cy="560" r="72" fill="#fbbf24" opacity="0.95"/>
+  <circle cx="1150" cy="560" r="120" fill="#fbbf24" opacity="0.12"/>
+
+  <!-- nuvens -->
+  <g fill="#f0c070" opacity="0.18">
+    <ellipse cx="300" cy="200" rx="180" ry="22"/>
+    <ellipse cx="480" cy="176" rx="110" ry="16"/>
+    <ellipse cx="900" cy="240" rx="150" ry="18"/>
+    <ellipse cx="1350" cy="180" rx="140" ry="17"/>
+  </g>
+
+  <!-- serra -->
+  <path d="M0 570 L180 400 L340 570 Z" fill="#122a1a" opacity="0.9"/>
+  <path d="M260 570 L470 350 L680 570 Z" fill="#0d2014" opacity="0.95"/>
+  <path d="M620 570 L800 420 L980 570 Z" fill="#122a1a" opacity="0.88"/>
+
+  <!-- arvores na linha do horizonte -->
+  <g fill="#0d2014">
+    <path d="M1080 570 L1104 486 L1128 570 Z"/>
+    <path d="M1120 570 L1142 500 L1164 570 Z"/>
+    <path d="M1420 570 L1444 492 L1468 570 Z"/>
+    <path d="M1462 570 L1484 508 L1506 570 Z"/>
+    <rect x="1098" y="562" width="9" height="20" fill="#2a1c0e"/>
+    <rect x="1438" y="562" width="9" height="20" fill="#2a1c0e"/>
+  </g>
+
+  <!-- chao -->
+  <path d="M0 566 Q400 540 800 566 Q1200 592 1600 562 L1600 900 L0 900 Z" fill="url(#chao)"/>
+  <rect width="1600" height="900" fill="url(#luz)"/>
+
+  <!-- fileiras de cultivo em perspectiva -->
+  <g stroke="#7bab3f" stroke-width="4" opacity="0.42" fill="none" stroke-linecap="round">
+    <path d="M120 900 Q420 700 700 596"/>
+    <path d="M300 900 Q520 706 760 602"/>
+    <path d="M500 900 Q640 716 830 610"/>
+    <path d="M700 900 Q770 730 900 620"/>
+    <path d="M1080 900 Q1010 730 960 626"/>
+    <path d="M1290 900 Q1130 736 1020 632"/>
+    <path d="M1500 900 Q1250 744 1090 640"/>
+  </g>
+  <!-- pequenas mudas -->
+  <g fill="#8fc44a" opacity="0.5">
+    <path d="M700 700 l-14 -18 M700 700 l14 -18 M700 700 v-22" stroke="#8fc44a" stroke-width="3" fill="none"/>
+    <path d="M980 680 l-13 -17 M980 680 l13 -17 M980 680 v-21" stroke="#8fc44a" stroke-width="3" fill="none"/>
+    <path d="M1230 720 l-15 -19 M1230 720 l15 -19 M1230 720 v-23" stroke="#8fc44a" stroke-width="3" fill="none"/>
+    <path d="M420 760 l-14 -18 M420 760 l14 -18 M420 760 v-22" stroke="#8fc44a" stroke-width="3" fill="none"/>
+  </g>
+
+  <!-- pessoa trabalhando (silhueta original) -->
+  <g transform="translate(860,470)">
+    <!-- sombra -->
+    <ellipse cx="4" cy="248" rx="62" ry="13" fill="#0b1a10" opacity="0.45"/>
+    <!-- pernas -->
+    <path d="M-4 168 L-20 238 L4 242 L16 174 Z" fill="#141f10"/>
+    <path d="M22 170 L40 232 L18 240 L12 176 Z" fill="#1b2a15"/>
+    <!-- tronco -->
+    <path d="M-14 76 Q22 62 56 78 L62 176 Q20 190 -8 176 Z" fill="#3f5c26"/>
+    <path d="M-14 76 Q22 62 56 78 L58 100 Q22 114 -12 100 Z" fill="#2b421a"/>
+    <!-- cinto -->
+    <rect x="-12" y="164" width="74" height="12" rx="4" fill="#5c3a20"/>
+    <!-- bracos segurando a enxada -->
+    <path d="M-10 88 L-46 128 L-32 142 L2 108 Z" fill="#3f5c26"/>
+    <path d="M58 90 L98 112 L88 128 L54 110 Z" fill="#3f5c26"/>
+    <!-- cabeca -->
+    <circle cx="22" cy="46" r="26" fill="#c98a5c"/>
+    <!-- chapeu de palha -->
+    <ellipse cx="22" cy="34" rx="60" ry="14" fill="#d9a441"/>
+    <path d="M-14 32 Q22 2 58 32 Z" fill="#c08a2e"/>
+    <ellipse cx="22" cy="32" rx="26" ry="8" fill="#8a6220"/>
+    <!-- enxada -->
+    <path d="M100 104 L186 18" stroke="#6b4a22" stroke-width="9" stroke-linecap="round"/>
+    <path d="M168 34 L196 8 L212 26 L184 52 Z" fill="#8a7358"/>
+  </g>
+
+  <!-- passaros -->
+  <g stroke="#0b1a10" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.5">
+    <path d="M380 240 q14 -12 28 0 q14 -12 28 0"/>
+    <path d="M500 300 q11 -9 22 0 q11 -9 22 0"/>
+    <path d="M300 320 q9 -7 18 0 q9 -7 18 0"/>
+  </g>
+</svg>

@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 659 429" width="659" height="429" role="img"
+     aria-label="Três pessoas plantando mudas juntas em uma horta comunitária, com uma casa ao fundo">
+  <rect width="659" height="429" fill="#eaf7ea"/>
+  <circle cx="520" cy="110" r="62" fill="#fbbf24" opacity="0.85"/>
+  <circle cx="520" cy="110" r="94" fill="#fbbf24" opacity="0.18"/>
+
+  <!-- nuvens -->
+  <g fill="#ffffff" opacity="0.85">
+    <ellipse cx="140" cy="86" rx="66" ry="22"/>
+    <ellipse cx="196" cy="76" rx="42" ry="16"/>
+    <ellipse cx="380" cy="62" rx="50" ry="17"/>
+  </g>
+
+  <!-- colinas -->
+  <path d="M0 268 Q140 224 290 262 Q420 296 659 250 L659 429 L0 429 Z" fill="#b6dd9a"/>
+  <path d="M0 316 Q180 280 380 312 Q520 336 659 306 L659 429 L0 429 Z" fill="#8fc46a"/>
+
+  <!-- casa -->
+  <g transform="translate(90,196)">
+    <path d="M-42 22 L0 -20 L42 22 Z" fill="#c1553c"/>
+    <rect x="-32" y="22" width="64" height="46" fill="#f2e2c4"/>
+    <rect x="-10" y="34" width="20" height="34" fill="#8a5a34"/>
+    <rect x="16" y="32" width="12" height="12" fill="#7fb3d5"/>
+    <rect x="34" y="-30" width="11" height="26" fill="#8a8a8a"/>
+  </g>
+
+  <!-- arvores -->
+  <g>
+    <rect x="556" y="252" width="10" height="42" fill="#7a5230"/>
+    <circle cx="561" cy="238" r="38" fill="#4a8c3f"/>
+    <circle cx="534" cy="252" r="26" fill="#5da34c"/>
+    <circle cx="588" cy="250" r="24" fill="#5da34c"/>
+    <rect x="418" y="268" width="8" height="34" fill="#7a5230"/>
+    <circle cx="422" cy="256" r="28" fill="#4a8c3f"/>
+    <circle cx="402" cy="266" r="19" fill="#5da34c"/>
+  </g>
+
+  <!-- canteiros -->
+  <g>
+    <path d="M60 400 Q200 372 340 400 Q470 424 610 398 L610 429 L60 429 Z" fill="#6b4a2a"/>
+    <path d="M60 400 Q200 372 340 400 Q470 424 610 398" fill="none" stroke="#8a6236" stroke-width="6"/>
+  </g>
+  <!-- mudas -->
+  <g stroke="#3f7a33" stroke-width="4" fill="none" stroke-linecap="round">
+    <path d="M140 392 l-12 -16 M140 392 l12 -16 M140 392 v-20"/>
+    <path d="M230 386 l-12 -16 M230 386 l12 -16 M230 386 v-20"/>
+    <path d="M330 390 l-12 -16 M330 390 l12 -16 M330 390 v-20"/>
+    <path d="M430 388 l-12 -16 M430 388 l12 -16 M430 388 v-20"/>
+    <path d="M520 392 l-12 -16 M520 392 l12 -16 M520 392 v-20"/>
+  </g>
+
+  <!-- pessoa 1 -->
+  <g transform="translate(150,236)">
+    <circle cx="26" cy="26" r="19" fill="#c98a5c"/>
+    <path d="M6 22 Q26 0 46 22 L46 30 Q26 16 6 30 Z" fill="#3d2a17"/>
+    <path d="M6 46 Q26 36 46 46 L52 118 Q26 128 0 118 Z" fill="#4ade80"/>
+    <path d="M6 46 Q26 36 46 46 L47 62 Q26 72 5 62 Z" fill="#2f9e5a"/>
+    <path d="M4 110 L0 158 L16 158 L18 114 Z" fill="#2f4a1f"/>
+    <path d="M48 110 L56 158 L40 158 L34 114 Z" fill="#2f4a1f"/>
+    <path d="M6 56 L-22 84 L-12 96 L12 72 Z" fill="#4ade80"/>
+    <path d="M46 56 L74 92 L62 102 L42 72 Z" fill="#4ade80"/>
+  </g>
+
+  <!-- pessoa 2 (centro, maior) -->
+  <g transform="translate(290,206)">
+    <circle cx="30" cy="28" r="22" fill="#a8703f"/>
+    <ellipse cx="30" cy="10" rx="44" ry="11" fill="#d9a441"/>
+    <path d="M2 8 Q30 -18 58 8 Z" fill="#c08a2e"/>
+    <path d="M2 52 Q30 40 58 52 L66 138 Q30 150 -6 138 Z" fill="#fbbf24"/>
+    <path d="M2 52 Q30 40 58 52 L59 70 Q30 82 1 70 Z" fill="#d9a441"/>
+    <path d="M0 128 L-6 186 L14 186 L16 134 Z" fill="#3f5c26"/>
+    <path d="M60 128 L70 186 L50 186 L44 134 Z" fill="#3f5c26"/>
+    <path d="M4 62 L-30 96 L-18 110 L10 80 Z" fill="#fbbf24"/>
+    <path d="M56 62 L92 100 L78 112 L52 82 Z" fill="#fbbf24"/>
+  </g>
+
+  <!-- pessoa 3 -->
+  <g transform="translate(450,240)">
+    <circle cx="26" cy="26" r="19" fill="#e0b088"/>
+    <path d="M4 24 Q26 2 48 24 L48 66 L38 66 L38 32 Q26 20 14 32 L14 66 L4 66 Z" fill="#7a4a2a"/>
+    <path d="M6 46 Q26 36 46 46 L52 116 Q26 126 0 116 Z" fill="#f0fdf4"/>
+    <path d="M6 46 Q26 36 46 46 L47 62 Q26 72 5 62 Z" fill="#4ade80"/>
+    <path d="M4 108 L0 154 L16 154 L18 112 Z" fill="#2f4a1f"/>
+    <path d="M48 108 L56 154 L40 154 L34 112 Z" fill="#2f4a1f"/>
+    <path d="M6 56 L-20 86 L-10 98 L12 72 Z" fill="#f0fdf4"/>
+    <path d="M46 56 L74 88 L62 98 L42 72 Z" fill="#f0fdf4"/>
+  </g>
+
+  <!-- regador -->
+  <g transform="translate(540,300)">
+    <path d="M0 0 h34 v40 h-34 Z" fill="#7fb3d5"/>
+    <path d="M34 10 L54 -4 L58 4 L34 22 Z" fill="#7fb3d5"/>
+    <path d="M10 -6 q12 -12 24 0" fill="none" stroke="#5a8fb0" stroke-width="4"/>
+  </g>
+</svg>

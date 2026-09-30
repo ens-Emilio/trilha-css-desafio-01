@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 60" width="420" height="60" role="img"
+     aria-label="Raiz Viva — cultive a vida">
+  <g transform="translate(30,30)">
+    <circle r="24" fill="#1b2f22"/>
+    <path d="M0 14 L0 -6" stroke="#6ee7a8" stroke-width="4" stroke-linecap="round"/>
+    <path d="M0 -2 C-12 -2 -17 -8 -17 -16 C-7 -16 -2 -10 0 -2 Z" fill="#4ade80"/>
+    <path d="M0 -2 C12 -2 17 -8 17 -16 C7 -16 2 -10 0 -2 Z" fill="#6ee7a8"/>
+  </g>
+  <text x="68" y="30" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="bold" fill="#f0fdf4">Raiz Viva</text>
+  <text x="68" y="48" font-family="Verdana, Geneva, sans-serif" font-size="10" letter-spacing="2" fill="#6ee7a8">CULTIVE A VIDA</text>
+</svg>

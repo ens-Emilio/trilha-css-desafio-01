@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 605" width="1440" height="605" role="img"
+     aria-label="Amanhecer sobre campos cultivados, com montanhas ao fundo e um celeiro na colina">
+  <defs>
+    <linearGradient id="ceu" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0b1a10"/>
+      <stop offset="38%" stop-color="#16301d"/>
+      <stop offset="68%" stop-color="#4a5a25"/>
+      <stop offset="88%" stop-color="#c98a3c"/>
+      <stop offset="100%" stop-color="#e8b463"/>
+    </linearGradient>
+    <radialGradient id="brilho" cx="50%" cy="100%" r="60%">
+      <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#fbbf24" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="campo1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2f4a1f"/>
+      <stop offset="100%" stop-color="#16240f"/>
+    </linearGradient>
+    <linearGradient id="campo2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3d5c26"/>
+      <stop offset="100%" stop-color="#1d2f14"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1440" height="605" fill="url(#ceu)"/>
+  <rect y="260" width="1440" height="345" fill="url(#brilho)"/>
+
+  <!-- sol -->
+  <circle cx="1010" cy="392" r="58" fill="#fbbf24" opacity="0.95"/>
+  <circle cx="1010" cy="392" r="92" fill="#fbbf24" opacity="0.14"/>
+
+  <!-- nuvens -->
+  <g fill="#e8b463" opacity="0.16">
+    <ellipse cx="250" cy="150" rx="150" ry="20"/>
+    <ellipse cx="360" cy="132" rx="90" ry="15"/>
+    <ellipse cx="700" cy="108" rx="120" ry="16"/>
+    <ellipse cx="1180" cy="168" rx="130" ry="18"/>
+  </g>
+
+  <!-- montanhas distantes -->
+  <path d="M0 400 L150 268 L300 400 Z" fill="#123021" opacity="0.9"/>
+  <path d="M200 400 L380 232 L560 400 Z" fill="#0e2618" opacity="0.95"/>
+  <path d="M520 400 L640 300 L760 400 Z" fill="#123021" opacity="0.9"/>
+  <path d="M900 400 L1060 250 L1220 400 Z" fill="#0e2618" opacity="0.92"/>
+  <path d="M1140 400 L1290 292 L1440 400 Z" fill="#123021" opacity="0.9"/>
+
+  <!-- colinas -->
+  <path d="M0 430 Q240 380 480 428 Q720 476 960 424 Q1200 372 1440 424 L1440 605 L0 605 Z" fill="url(#campo1)"/>
+  <path d="M0 500 Q300 448 620 498 Q920 544 1240 494 Q1340 480 1440 492 L1440 605 L0 605 Z" fill="url(#campo2)"/>
+
+  <!-- sulcos do plantio -->
+  <g stroke="#5c8a34" stroke-width="3" opacity="0.38" fill="none">
+    <path d="M120 605 Q300 500 520 470"/>
+    <path d="M280 605 Q400 520 580 490"/>
+    <path d="M470 605 Q540 540 660 512"/>
+    <path d="M700 605 Q720 560 790 534"/>
+    <path d="M900 605 Q940 560 1010 540"/>
+    <path d="M1120 605 Q1160 566 1230 550"/>
+    <path d="M1320 605 Q1350 578 1400 566"/>
+  </g>
+
+  <!-- celeiro -->
+  <g transform="translate(1210,392)">
+    <path d="M-30 16 L0 -14 L30 16 Z" fill="#5c3a20"/>
+    <rect x="-22" y="16" width="44" height="34" fill="#7a4f2a"/>
+    <rect x="-8" y="26" width="16" height="24" fill="#3a2413"/>
+    <path d="M0 -14 L0 -26" stroke="#3a2413" stroke-width="3"/>
+  </g>
+
+  <!-- arvores -->
+  <g fill="#1d3a1c">
+    <path d="M120 448 L134 396 L148 448 Z"/>
+    <path d="M137 448 L150 406 L163 448 Z"/>
+    <rect x="131" y="444" width="7" height="16" fill="#3a2a16"/>
+    <path d="M230 442 L246 384 L262 442 Z"/>
+    <path d="M249 442 L263 396 L277 442 Z"/>
+    <rect x="244" y="438" width="7" height="16" fill="#3a2a16"/>
+    <path d="M380 452 L392 408 L404 452 Z"/>
+    <rect x="388" y="448" width="6" height="14" fill="#3a2a16"/>
+  </g>
+
+  <!-- passaros -->
+  <g stroke="#0b1a10" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55">
+    <path d="M600 150 q10 -9 20 0 q10 -9 20 0"/>
+    <path d="M670 186 q8 -7 16 0 q8 -7 16 0"/>
+    <path d="M760 132 q7 -6 14 0 q7 -6 14 0"/>
+  </g>
+</svg>
