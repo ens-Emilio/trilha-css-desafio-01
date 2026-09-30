@@ -35,7 +35,7 @@ trilha-css-desafio-01/
 ├── assets/
 │   ├── css/
 │   │   ├── reset.css      Normalização, box-sizing e fonte Raleway
-│   │   └── styles.css     Estilização completa (398 linhas comentadas)
+│   │   └── styles.css     Estilização completa (433 linhas comentadas)
 │   └── images/
 │       ├── logo.svg        Broto de duas folhas
 │       ├── banner.svg      Amanhecer sobre campos cultivados
