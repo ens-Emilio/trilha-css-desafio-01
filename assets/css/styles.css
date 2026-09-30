@@ -1,0 +1,398 @@
+/* ==========================================================================
+   styles.css — Trilha de CSS da DIO · Desafio 01
+   Landing page estilizada do zero a partir do protótipo do Figma.
+   --------------------------------------------------------------------------
+   Estrutura do arquivo:
+     1. Tokens de design
+     2. Base
+     3. Acessibilidade (skip link, foco, movimento reduzido)
+     4. Banner
+     5. Conteúdo do curso
+     6. Transforme o mundo
+     7. Desafios profissionais
+     8. Rodapé
+     9. Responsividade
+   ========================================================================== */
+
+/* ==========================================================================
+   1. TOKENS DE DESIGN
+   Centralizar as cores e medidas aqui permite mudar o tema inteiro
+   alterando um único bloco, em vez de caçar valores espalhados.
+   ========================================================================== */
+:root {
+    /* Cores */
+    --cor-fundo: #000000;
+    --cor-azul: #33a8db;
+    --cor-azul-escuro: #1472b7;
+    --cor-azul-medio: #3ba1cd;
+    --cor-azul-botao: #1572b7;
+    --cor-caixa: #252525;
+    --cor-texto: #ffffff;
+    --cor-borda-suave: rgba(51, 168, 219, 0.5);
+
+    /* Gradientes */
+    --grad-titulo: linear-gradient(180deg, #33a8db 0%, #1472b7 100%);
+    --grad-borda: linear-gradient(180deg, #3ba1cd 0%, #1572b7 100%);
+    --grad-banner: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.6) 0%,
+        rgba(49, 168, 221, 0.2) 50%,
+        rgba(0, 0, 0, 0.6) 100%
+    );
+    --grad-rodape: linear-gradient(
+        180deg,
+        rgba(50, 168, 219, 0) 0%,
+        rgba(50, 168, 219, 0.2) 100%
+    );
+
+    /* Tipografia fluida: cresce com a tela entre um mínimo e um máximo */
+    --fonte-titulo-banner: clamp(1.75rem, 4.5vw, 2.5rem);
+    --fonte-titulo-secao: clamp(1.35rem, 3.5vw, 2rem);
+    --fonte-destaque: clamp(1.75rem, 4.5vw, 2.5rem);
+
+    /* Layout */
+    --largura-banner: 600px;
+    --largura-conteudo: 800px;
+    --largura-modulo: 530px;
+    --espaco-secao: clamp(60px, 9vw, 100px);
+    --raio-pilula: 999px;
+    /* Respiro lateral das seções. Existe para o conteúdo não encostar nas
+       bordas no celular, onde o protótipo original estouraria a tela. */
+    --respiro-lateral: 20px;
+}
+
+/* ==========================================================================
+   2. BASE
+   ========================================================================== */
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.5;
+}
+
+h2 {
+    font-size: var(--fonte-titulo-secao);
+    color: var(--cor-azul);
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    text-wrap: balance;
+    /* Títulos usam entrelinhamento apertado: texto grande precisa de menos
+       espaço entre linhas que o corpo do texto. O 1.5 do body é para leitura. */
+    line-height: 1.15;
+}
+
+p {
+    color: var(--cor-texto);
+}
+
+section {
+    margin: var(--espaco-secao) auto;
+    padding-inline: var(--respiro-lateral);
+}
+
+/* ==========================================================================
+   3. ACESSIBILIDADE
+   ========================================================================== */
+
+/* Skip link: primeiro elemento focável da página.
+   Fica fora da tela até receber foco pelo teclado. */
+.skip-link {
+    position: absolute;
+    top: 0;
+    left: -9999px;
+    z-index: 999;
+    padding: 14px 24px;
+    background-color: var(--cor-azul-escuro);
+    color: var(--cor-texto);
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 0 0 8px 0;
+}
+
+.skip-link:focus {
+    left: 0;
+    outline: 3px solid var(--cor-texto);
+    outline-offset: 2px;
+}
+
+/* Foco sempre visível — nunca remover o outline sem um substituto.
+   O azul claro tem contraste alto sobre o fundo preto. */
+:focus-visible {
+    outline: 3px solid var(--cor-azul);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* Respeita quem pediu menos animação no sistema operacional */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ==========================================================================
+   4. BANNER
+   ========================================================================== */
+.banner {
+    background-image: var(--grad-banner), url('../images/banner.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 600px;
+    padding: 60px 20px;
+    border-bottom: 1px solid var(--cor-borda-suave);
+}
+
+.banner .banner-content {
+    color: var(--cor-texto);
+    width: 100%;
+    max-width: var(--largura-banner);
+    margin: 0 auto;
+    text-align: center;
+}
+
+.banner .logo {
+    background-color: rgba(0, 0, 0, 0.2);
+    height: 260px;
+    width: 260px;
+    max-width: 100%;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    padding: 16px;
+}
+
+.banner .logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.banner h1 {
+    /* Cor sólida primeiro: serve de fallback caso o navegador não
+       suporte recortar o texto pelo fundo. */
+    color: var(--cor-azul);
+    font-size: var(--fonte-titulo-banner);
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1.15;
+}
+
+/* Texto em gradiente: melhoria progressiva.
+   Só é aplicado se o navegador souber recortar o fundo pelo texto. */
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    .banner h1 {
+        background-image: var(--grad-titulo);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+}
+
+.banner p {
+    font-size: clamp(1rem, 1.6vw, 1.25rem);
+    margin: 16px 0 24px;
+}
+
+/* --- Botão de chamada para ação ---
+   A borda em gradiente é feita com uma máscara, e não com border-image.
+   Motivo: border-image ignora border-radius, então o botão sairia com
+   cantos retos em vez do formato pílula do protótipo. */
+.banner button {
+    position: relative;
+    display: inline-block;
+    padding: 16px 32px;
+    color: var(--cor-azul);
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    border-radius: var(--raio-pilula);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.banner button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background-image: var(--grad-borda);
+    /* Recorta o miolo da máscara, deixando só o anel da borda */
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.banner button:hover {
+    background-color: rgba(51, 168, 219, 0.15);
+    color: var(--cor-texto);
+}
+
+/* ==========================================================================
+   5. CONTEÚDO DO CURSO
+   ========================================================================== */
+#course-content {
+    /* Soma o respiro lateral para que o CONTEÚDO tenha exatamente os 800px
+       do protótipo, e não 800px menos o padding. */
+    max-width: calc(var(--largura-conteudo) + var(--respiro-lateral) * 2);
+    text-align: center;
+}
+
+#course-content .modules-list {
+    list-style: none;
+    margin: 24px 0;
+}
+
+#course-content .modules-list .module {
+    color: var(--cor-texto);
+    width: 100%;
+    max-width: var(--largura-modulo);
+    margin: 0 auto 24px;
+    border: 1px solid var(--cor-azul);
+    background-color: var(--cor-caixa);
+    padding: 16px;
+    border-radius: var(--raio-pilula);
+    box-shadow: inset -5px 6px 8px rgba(0, 0, 0, 0.7);
+}
+
+#course-content .modules-list .module span {
+    color: var(--cor-azul);
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   6. TRANSFORME O MUNDO
+   ========================================================================== */
+#transform-world {
+    min-height: 560px;
+    background-image: url('../images/woman-code.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-top: 1px solid var(--cor-borda-suave);
+    border-bottom: 1px solid var(--cor-borda-suave);
+    padding: clamp(60px, 14vw, 200px);
+    margin-inline: 0;
+    max-width: none;
+}
+
+#transform-world p {
+    font-weight: 900;
+    font-size: var(--fonte-destaque);
+    text-transform: lowercase;
+    max-width: 250px;
+    line-height: 1.2;
+    text-shadow: 3px 2px var(--cor-azul);
+}
+
+/* ==========================================================================
+   7. DESAFIOS PROFISSIONAIS
+   ========================================================================== */
+#professional-challenges {
+    max-width: calc(var(--largura-conteudo) + var(--respiro-lateral) * 2);
+    text-align: center;
+}
+
+#professional-challenges img {
+    margin: 32px auto;
+}
+
+/* ==========================================================================
+   8. RODAPÉ
+   ========================================================================== */
+footer {
+    padding: 60px 20px;
+    text-align: center;
+    background-image: var(--grad-rodape);
+    border-top: 1px solid var(--cor-borda-suave);
+}
+
+footer .dio-logo {
+    width: 300px;
+    max-width: 100%;
+}
+
+footer a {
+    color: var(--cor-azul);
+    font-weight: 700;
+    text-decoration: none;
+    text-underline-offset: 3px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   9. RESPONSIVIDADE
+   ========================================================================== */
+
+/* Em telas pequenas o banner não precisa de 600px de altura */
+@media (max-width: 700px) {
+    .banner {
+        min-height: auto;
+        padding: 40px 20px 48px;
+    }
+
+    .banner .logo {
+        height: 180px;
+        width: 180px;
+    }
+
+    .banner button {
+        padding: 14px 24px;
+        letter-spacing: 2px;
+        font-size: 0.9rem;
+    }
+
+    #transform-world {
+        min-height: 420px;
+        padding: 60px 24px;
+    }
+}
+
+/* Efeito parallax apenas onde ele funciona bem.
+   Em celulares o background-attachment: fixed quebra o layout
+   (o iOS, por exemplo, ignora ou renderiza errado). */
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+    #transform-world {
+        background-attachment: fixed;
+    }
+}
+
+/* Em telas muito estreitas, o espaçamento entre letras dos títulos
+   pode causar quebra estranha de linha */
+@media (max-width: 420px) {
+    h2 {
+        letter-spacing: 2px;
+    }
+}
+
+/* ==========================================================================
+   10. ALTO CONTRASTE FORÇADO (Windows)
+   ========================================================================== */
+@media (forced-colors: active) {
+    .banner button::before {
+        display: none;
+    }
+
+    .banner button {
+        border: 2px solid ButtonText;
+    }
+}
