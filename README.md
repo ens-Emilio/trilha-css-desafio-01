@@ -6,7 +6,7 @@ Desafio de Projeto da [Trilha de CSS da DIO](https://www.dio.me/).
 > desafio** — azul da DIO sobre preto, medindo 32 de 35 propriedades idênticas
 > ao gabarito oficial.
 >
-> A branch [`main`](../../tree/main) traz a versão **Vida no Campo** (Raiz
+> A branch [`main`](https://github.com/ens-Emilio/trilha-css-desafio-01/tree/main) traz a versão **Vida no Campo** (Raiz
 > Viva), com tema próprio, fonte Fraunces auto-hospedada e acabamento
 > refinado. As duas partem do mesmo HTML e da mesma estrutura de CSS —
 > compará-las mostra exatamente o que muda quando se troca paleta, tipografia e
