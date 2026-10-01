@@ -2,6 +2,16 @@
 
 Desafio de Projeto da [Trilha de CSS da DIO](https://www.dio.me/).
 
+> **Versão:** esta branch (`versao-dio`) é a **reprodução fiel do layout do
+> desafio** — azul da DIO sobre preto, medindo 32 de 35 propriedades idênticas
+> ao gabarito oficial.
+>
+> A branch [`main`](../../tree/main) traz a versão **Vida no Campo** (Raiz
+> Viva), com tema próprio, fonte Fraunces auto-hospedada e acabamento
+> refinado. As duas partem do mesmo HTML e da mesma estrutura de CSS —
+> compará-las mostra exatamente o que muda quando se troca paleta, tipografia e
+> conteúdo mantendo a arquitetura.
+
 O repositório original entrega o HTML e as imagens, **sem nenhum CSS** — o
 desafio é escrever toda a estilização do zero, a partir do protótipo do
 [Figma](https://www.figma.com/file/3PiokoJj9IhGDnNiWAJbz7/DIO---Desafio-01),
