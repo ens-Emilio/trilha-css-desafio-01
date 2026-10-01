@@ -18,7 +18,7 @@ page de inscrição da formação **Vida no Campo**.
 | Versão | Onde | O que é |
 | --- | --- | --- |
 | **Vida no Campo** (atual) | branch `main` | Tema próprio, tipografia Fraunces, refinado |
-| **Reprodução da DIO** | branch [`versao-dio`](../../tree/versao-dio) | Layout fiel ao protótipo do desafio, azul sobre preto |
+| **Reprodução da DIO** | branch [`versao-dio`](https://github.com/ens-Emilio/trilha-css-desafio-01/tree/versao-dio) | Layout fiel ao protótipo do desafio, azul sobre preto |
 
 A branch `versao-dio` preserva a primeira versão, que reproduz o layout da DIO
 com fidelidade e serve de comparação direta com o gabarito oficial.
@@ -232,10 +232,10 @@ toque do CTA fica acima de 44×44 em todas as larguras (WCAG 2.5.8).
 
 | Pasta | Tamanho |
 | --- | --- |
-| Fontes | 132 KB |
-| Imagens (SVG vetorial) | 32 KB |
-| CSS | 28 KB |
-| **Projeto** | **220 KB** |
+| Fontes (Fraunces, 2 arquivos woff2) | 124 KB |
+| Imagens (5 SVGs vetoriais) | 14 KB |
+| CSS (reset + styles) | 19 KB |
+| **Projeto** | **171 KB** |
 
 As ilustrações são SVG desenhados para o projeto — nítidos em qualquer
 resolução. O repositório original da DIO usa PNGs que somam ~23,8 MB.
