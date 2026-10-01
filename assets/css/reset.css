@@ -1,47 +1,45 @@
 /* ==========================================================================
-   reset.css — normalização mínima
-   Trilha de CSS da DIO — Desafio 01
+   reset.css — zerar estilos padrão do navegador
+   Desafio 01 da Trilha de CSS da DIO · "Vida no Campo" (Raiz Viva)
    ========================================================================== */
-
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;900&display=swap');
-
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
-}
-
-* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 html {
     scroll-behavior: smooth;
-    /* Evita que o navegador "infle" o texto no mobile sem necessidade */
-    -webkit-text-size-adjust: 100%;
 }
 
 body {
-    font-family: 'Raleway', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
-img {
+img,
+svg {
     display: block;
     max-width: 100%;
     height: auto;
 }
 
-button {
-    font: inherit;
-    color: inherit;
-    cursor: pointer;
-    background: none;
-    border: none;
+ul,
+ol {
+    list-style: none;
 }
 
 a {
     color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
 }

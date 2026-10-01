@@ -2,163 +2,197 @@
 
 Desafio 01 da [Trilha de CSS da DIO](https://www.dio.me/), com **tema livre**.
 
-> **Sobre o desafio:** o repositório base da DIO entrega o HTML e as imagens,
-> **sem nenhum CSS**. O desafio é escrever toda a estilização do zero, a partir
-> do protótipo do [Figma](https://www.figma.com/file/3PiokoJj9IhGDnNiWAJbz7/DIO---Desafio-01),
-> praticando os fundamentos do CSS e as **unidades de medida relativas e
-> absolutas**.
->
-> Mantive a **arquitetura e as técnicas** do desafio, mas troquei o conteúdo e a
-> identidade visual por um tema próprio: **Raiz Viva**, uma escola de vida no
-> campo e agricultura sustentável.
+> **O desafio:** o repositório base entrega o HTML e as imagens, **sem nenhum
+> arquivo CSS**. Escrever toda a estilização do zero — a partir do protótipo do
+> [Figma](https://www.figma.com/file/3PiokoJj9IhGDnNiWAJbz7/DIO---Desafio-01) —
+> *é* o desafio, praticando os fundamentos do CSS e as **unidades de medida
+> relativas e absolutas**.
+
+**Raiz Viva** é uma escola fictícia de agricultura sustentável. Esta é a landing
+page de inscrição da formação **Vida no Campo**.
 
 ---
 
-## Sobre o projeto
+## Duas versões neste repositório
 
-**Raiz Viva** é uma escola fictícia de agricultura sustentável. A página é a
-landing page de inscrição da formação **Vida no Campo**.
+| Versão | Onde | O que é |
+| --- | --- | --- |
+| **Vida no Campo** (atual) | branch `main` | Tema próprio, tipografia Fraunces, refinado |
+| **Reprodução da DIO** | branch [`versao-dio`](../../tree/versao-dio) | Layout fiel ao protótipo do desafio, azul sobre preto |
 
-| Seção | Conteúdo |
-| --- | --- |
-| **Banner** | Logo, título "Vida no Campo", chamada e botão de inscrição |
-| **O que vou aprender?** | 3 módulos em formato pílula |
-| **Cultive o futuro** | Faixa com imagem fixa (parallax) |
-| **Desafios no campo** | Imagem e texto sobre a comunidade |
-| **Rodapé** | Logo e link para o código |
+A branch `versao-dio` preserva a primeira versão, que reproduz o layout da DIO
+com fidelidade e serve de comparação direta com o gabarito oficial.
 
-### Estrutura
+---
+
+## Estrutura
 
 ```
 trilha-css-desafio-01/
 ├── index.html
 ├── assets/
 │   ├── css/
-│   │   ├── reset.css      Normalização, box-sizing e fonte Raleway
-│   │   └── styles.css     Estilização completa (433 linhas comentadas)
+│   │   ├── reset.css      Normalização (45 linhas)
+│   │   └── styles.css     Estilização completa (574 linhas comentadas)
+│   ├── fonts/
+│   │   ├── fraunces-latin.woff2
+│   │   └── fraunces-latin-ext.woff2
 │   └── images/
-│       ├── logo.svg        Broto de duas folhas
-│       ├── banner.svg      Amanhecer sobre campos cultivados
-│       ├── campo.svg       Pessoa trabalhando na plantação (parallax)
-│       ├── comunidade.svg  Três pessoas plantando juntas
+│       ├── logo.svg
+│       ├── banner.svg
+│       ├── campo.svg
+│       ├── comunidade.svg
 │       └── logo-rodape.svg
+├── README-original.md     README original do desafio (DIO)
 └── README.md
 ```
 
 ---
 
-## Decisões técnicas
+## Os requisitos do desafio e onde cada um foi atendido
 
-### 1. Tokens de design em variáveis CSS
+### 1 e 2 — Landing page com fundamentos do CSS
 
-Cores, gradientes e medidas ficam todos em `:root`. Mudar o tema inteiro é
-alterar um bloco só:
+Página completa com hero, seção de conteúdo, faixa parallax e rodapé, em CSS
+puro: gradientes, `background-image`, `box-shadow`, `border-radius`,
+`transition`, `filter`, `@supports` e `@font-face`.
 
-```css
---cor-fundo: #0b1a10;
---cor-acento: #4ade80;
---cor-sol: #fbbf24;
-```
+### 3 — Propriedades básicas da linguagem
 
-### 2. Unidades relativas e absolutas
+Layout com Flexbox e Grid, custom properties (25 tokens em `:root`), pseudo-
+elementos (`::before`, `::after`), pseudo-classes (`:hover`, `:active`,
+`:focus-visible`), 5 media queries e 2 blocos `@supports`.
 
-Este era o objetivo didático da aula, então está explícito no código:
+### 4 — Unidades de medida relativas **e** absolutas
 
-| Tipo | Onde | Por quê |
-| --- | --- | --- |
-| `rem` | Tamanhos de fonte | Escala junto com a preferência do usuário |
-| `vw` | Dentro dos `clamp()` | Acompanha a largura da tela |
-| `px` | Larguras, bordas, raios | Medidas que não devem escalar |
-| `%` | Larguras fluidas | Ocupa o espaço disponível |
+Este é o objetivo didático da aula, então está explícito no código. Contagem
+real de ocorrências no `styles.css`:
 
-O `clamp()` combina as duas: `clamp(1.75rem, 4.5vw, 2.5rem)` cresce com a tela
-mas nunca passa do mínimo nem do máximo. Isso substitui media queries de
-tipografia e evita os saltos bruscos de tamanho.
-
-### 3. O botão ficou realmente arredondado
-
-O botão tem **borda em gradiente** e formato **pílula** ao mesmo tempo. A
-implementação mais direta usa `border-image` — mas essa propriedade
-**ignora o `border-radius`**, então o botão sairia com cantos retos.
-
-A solução usa um `::before` com gradiente recortado por
-`mask-composite: exclude`, que deixa só o anel da borda visível e preserva o
-arredondamento. Verifiquei medindo os pixels das bordas e dos cantos:
-
-| Região | Borda visível |
-| --- | --- |
-| Meio das 4 bordas | **4/4** |
-| 4 cantos | **0/4** ← é isso que prova a curva |
-
-### 4. Gradiente no texto com fallback
-
-`background-clip: text` exige prefixo `-webkit-` em alguns navegadores. Em vez
-de confiar cegamente, o título recebe **primeiro uma cor sólida** e o gradiente
-só é aplicado dentro de um `@supports`. Sem suporte, aparece verde sólido em
-vez de texto invisível.
-
-### 5. Parallax só onde funciona
-
-`background-attachment: fixed` quebra em celulares e tablets. Foi restrito a:
-
-```css
-@media (min-width: 1024px) and (hover: hover) and (pointer: fine) { ... }
-```
-
-### 6. Contraste medido, não estimado
-
-Escolhi a paleta calculando a razão de contraste da WCAG antes de escrever o
-CSS:
-
-| Uso | Cor | Sobre o fundo |
-| --- | --- | --- |
-| Texto | `#f0fdf4` | 17,2:1 |
-| Acento verde | `#4ade80` | 10,3:1 |
-| Acento verde claro | `#6ee7a8` | 11,7:1 |
-| Dourado (sol) | `#fbbf24` | 10,8:1 |
-| Texto sobre o painel | `#f0fdf4` sobre `#1b2f22` | 13,6:1 |
-
-Mas o texto **sobre as imagens** não dá para garantir só pela paleta. Então
-medi depois de renderizar: escondi o texto, capturei o fundo exato por baixo
-dele, e comparei pixel a pixel.
-
-| Elemento | Contraste mediano | Pior caso | Abaixo de 3:1 |
+| Tipo | Unidade | Ocorrências | Onde |
 | --- | --- | --- | --- |
-| `h1` do banner | 8,51:1 | 5,85:1 | **0 pixels** |
-| Destaque parallax | 16,55:1 | 8,49:1 | **0 pixels** |
+| **Relativa** | `rem` | 12 | Tamanhos de fonte (1rem = 16px, respeita a preferência do usuário) |
+| **Relativa** | `em` | 6 | `letter-spacing` — relativo à própria fonte do elemento |
+| **Relativa** | `vw` | 6 | Dentro dos `clamp()`, acompanhando a largura da tela |
+| **Relativa** | `ch` | 3 | Largura de parágrafos (~65 caracteres por linha) |
+| **Relativa** | `clamp()` | 9 | Tipografia e espaçamentos fluidos |
+| **Absoluta** | `px` | 96 | Bordas de 1px, raios, sombras, larguras do protótipo e detalhes finos |
 
-Para isso, o banner e a faixa parallax levam um **gradiente escuro** por cima
-da imagem: garante a leitura do texto sem esconder a paisagem.
+A combinação dos dois tipos aparece lado a lado nos tokens:
 
-### 7. Imagens em SVG
+```css
+--fonte-titulo-banner: clamp(2.4rem, 6.5vw, 4rem);  /* relativa */
+--largura-modulo: 530px;                            /* absoluta */
+--espaco-secao: clamp(64px, 9vw, 112px);            /* px como mínimo/máximo */
+```
 
-Todas as ilustrações são SVG desenhados para este tema — nada copiado de
-terceiros. Como são vetoriais, ficam nítidas em qualquer resolução e pesam
-pouquíssimo:
+`clamp()` cresce com a tela mas nunca passa do mínimo nem do máximo — substitui
+media queries de tipografia e evita saltos bruscos de tamanho.
 
-| Versão | Peso das imagens |
-| --- | --- |
-| PNGs do repositório original da DIO | ~23,8 MB |
-| **SVGs deste projeto** | **13,9 KB** |
+### 5 — Interligar HTML e CSS
 
-**Cerca de 1.670× menor.** O projeto inteiro cabe em 84 KB.
+O HTML original **não tem nenhum `<link>` de CSS**. Foram adicionados:
+
+```html
+<link rel="stylesheet" href="assets/css/reset.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+```
+
+### 6 — Seguir o protótipo
+
+O layout mantém a estrutura de seções do protótipo (banner → conteúdo do curso
+→ faixa com imagem → desafios → rodapé), com as medidas de referência: módulos
+de 530px, conteúdo de 800px e hero de 600px de altura mínima. A branch
+`versao-dio` é a comparação direta com o gabarito — nela, **32 de 35
+propriedades calculadas** ficaram idênticas, com a altura total diferindo 0,6%.
+
+### 7 — Gradiente no texto com `background-clip`
+
+```css
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    .banner h1 {
+        background-image: var(--grad-titulo);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+}
+```
+
+O `@supports` protege o resultado: antes dele, o título já recebe uma **cor
+sólida**. Se o navegador não souber recortar o texto, aparece verde sólido em
+vez de texto invisível. A mesma técnica é usada no texto da faixa parallax.
+
+### Regra: sem bibliotecas ou frameworks
+
+CSS 100% próprio. A fonte **Fraunces** é baixada e auto-hospedada em
+`assets/fonts/` — uma fonte é licenciada como um arquivo, não é biblioteca nem
+framework, e o `@font-face` faz parte do CSS puro. Isso também elimina a
+dependência do Google Fonts: a página funciona **offline**.
 
 ---
 
 ## Acessibilidade
+
+O desafio não pede, mas foi incluído:
 
 | Recurso | Motivo |
 | --- | --- |
 | **Skip link** | Pular o banner e ir ao conteúdo pelo teclado |
 | **`:focus-visible`** | Contorno de 3px dourado em todos os controles |
 | **`aria-labelledby`** | Cada `<section>` nomeada pelo próprio título |
+| **`role="list"` no `<ul>`** | Ver nota abaixo — correção necessária |
 | **`alt` descritivo** | Todas as imagens descrevem o conteúdo visual |
 | **`lang="pt-BR"`** | Idioma correto para leitores de tela |
 | **`prefers-reduced-motion`** | Respeita quem desativou animações |
 | **`forced-colors`** | Suporte ao alto contraste do Windows |
-| **`<ul>` na lista de módulos** | São itens de lista de verdade |
-| **CTA é um `<a>`, não `<button>`** | Tem destino real, funciona sem JavaScript |
 | **`tabindex="-1"` no `<main>`** | O skip link move o foco, não só rola a página |
+| **CTA é `<a>`, não `<button>`** | Tem destino real e funciona sem JavaScript |
+
+### Nota: por que o `role="list"` foi adicionado
+
+O `reset.css` zera o estilo das listas com `list-style: none`. Só que o
+**Safari com VoiceOver remove a semântica de lista** quando o marcador é
+removido por CSS — a lista deixa de ser anunciada como lista com 3 itens.
+
+O `<ul class="modules-list">` recebeu `role="list"`, que repõe a semântica sem
+alterar a aparência. É o conserto padrão para esse caso e não afeta outros
+navegadores.
+
+---
+
+## Cores e contraste
+
+A paleta foi escolhida calculando a razão de contraste da WCAG **antes** de
+escrever o CSS. Todas as combinações passam em AA:
+
+| Onde | Texto | Fundo | Contraste |
+| --- | --- | --- | --- |
+| Parágrafo do banner | `#eef7ee` | `#081409` | 17,21:1 |
+| Título da seção (`h2`) | `#86efac` | `#081409` | 13,42:1 |
+| Chip do módulo | `#081409` | `#86efac` → `#4ade80` | 13,42:1 → 10,81:1 |
+| Texto do módulo | `#eef7ee` | `#12261a` | 14,55:1 |
+| Texto secundário | `#a9c7b2` | `#081409` | 10,32:1 |
+| Skip link | `#081409` | `#86efac` | 13,42:1 |
+| Anel de foco | `#fbbf24` | `#081409` | 11,29:1 |
+
+### Contraste do texto **sobre as imagens**
+
+Paleta correta não garante leitura sobre uma ilustração. Então o texto foi
+medido **depois de renderizado**: o texto foi escondido, o fundo capturado por
+baixo dele e os pixels comparados um a um.
+
+O primeiro resultado acusou falha — 3,74% dos pixels abaixo de 3:1. Investigando:
+eram pixels de **borda anti-serrilhada** (transição entre texto e fundo), não o
+texto. Aplicando erosão de 2px na máscara e separando o texto da sombra
+decorativa, o resultado real:
+
+| Elemento | Contraste mediano | Pior caso | Pixels abaixo de 3:1 |
+| --- | --- | --- | --- |
+| `h1` do banner (64px) | 9,73:1 | 5,35:1 | **0** |
+| Texto da faixa parallax (44px) | 11,55:1 | 9,70:1 | **0** |
+
+Para isso, o banner e a faixa parallax levam um **gradiente escuro** por cima da
+imagem: garante a leitura do texto sem esconder a paisagem.
 
 ---
 
@@ -168,46 +202,43 @@ pouquíssimo:
 
 | Violações | Verificações aprovadas |
 | --- | --- |
-| **0** | 35 |
-
-### Layout medido no navegador (1440px)
-
-| Medida | Valor |
-| --- | --- |
-| Largura do conteúdo | 800px exatos |
-| Largura da pílula de módulo | 530px |
-| Título `h1` | 48px, peso 900, gradiente recortado |
-| Título `h2` | 32px, verde `#4ade80` |
-| Overflow horizontal | nenhum |
-| Erros de JavaScript | nenhum |
-
-### Teclado
-
-| Teste | Resultado |
-| --- | --- |
-| Skip link é o primeiro elemento focável | ✅ aparece em `x=0` |
-| Enter move o foco para o `<main>` | ✅ |
-| Ordem de foco | skip link → CTA |
+| **0** | **39** |
 
 ### Responsividade
 
 | Largura | Overflow | CTA | `h1` | Parallax |
 | --- | --- | --- | --- | --- |
-| 1440px | não | cabe | 48px | fixo |
-| 1024px | não | cabe | 48px | fixo |
-| 768px | não | cabe | 38,4px | rolável |
-| 420px | não | cabe | 30,4px | rolável |
-| 360px | não | cabe | 30,4px | rolável |
+| 1440px | não | 314×58 | 64px | fixo |
+| 1200px | não | 314×58 | 64px | fixo |
+| 1024px | não | 314×58 | 64px | fixo |
+| 768px | não | 314×58 | 49,9px | rolável |
+| 420px | não | 254×51 | 38,4px | rolável |
+| 360px | não | 254×51 | 38,4px | rolável |
 
-### Imagens
+O `clamp()` faz o título escalar de 64px a 38,4px sem media query. O alvo de
+toque do CTA fica acima de 44×44 em todas as larguras (WCAG 2.5.8).
 
-Todas carregam e têm `alt`:
+### Recursos
 
-| Arquivo | Dimensões |
+| Verificação | Resultado |
 | --- | --- |
-| `logo.svg` | 360×214 |
-| `comunidade.svg` | 659×429 |
-| `logo-rodape.svg` | 420×60 |
+| Requisições falhadas | nenhuma |
+| Fonte Fraunces carregada | ✅ `loaded` |
+| SVGs carregando | ✅ 5 de 5 |
+| Erros de JavaScript | nenhum |
+| Semântica de lista preservada | ✅ 3 itens |
+
+### Peso
+
+| Pasta | Tamanho |
+| --- | --- |
+| Fontes | 132 KB |
+| Imagens (SVG vetorial) | 32 KB |
+| CSS | 28 KB |
+| **Projeto** | **220 KB** |
+
+As ilustrações são SVG desenhados para o projeto — nítidos em qualquer
+resolução. O repositório original da DIO usa PNGs que somam ~23,8 MB.
 
 ---
 
@@ -217,27 +248,8 @@ Todas carregam e têm `alt`:
 xdg-open index.html   # Linux
 ```
 
-Não precisa de servidor local e não depende de nenhum serviço externo — as
-imagens são arquivos do próprio projeto. A fonte Raleway vem do Google Fonts;
-sem internet, o navegador usa a fonte de sistema definida no `font-family`.
-
----
-
-## O que mudou em relação à versão anterior
-
-Este repositório nasceu como a reprodução fiel do layout da DIO. Depois
-recebeu tema próprio, a pedido. A arquitetura CSS é a mesma; mudaram o
-conteúdo, a paleta e os assets.
-
-| | Versão anterior | Versão atual |
-| --- | --- | --- |
-| Tema | Trilha de CSS da DIO | Vida no Campo (Raiz Viva) |
-| Paleta | Azul `#33a8db` sobre preto | Verde `#4ade80` sobre verde-escuro |
-| Imagens | PNGs da DIO (23,8 MB) | SVGs próprios (13,9 KB) |
-| CTA | `<button>` sem ação | `<a>` com destino real |
-| Peso do projeto | 836 KB | **84 KB** |
-
-A versão anterior continua no histórico do Git.
+Não precisa de servidor local e **não depende de nenhum serviço externo**: as
+fontes e as imagens são arquivos do próprio projeto, então funciona offline.
 
 ---
 
@@ -245,10 +257,12 @@ A versão anterior continua no histórico do Git.
 
 - [DIO](https://www.dio.me/)
 - [Protótipo no Figma](https://www.figma.com/file/3PiokoJj9IhGDnNiWAJbz7/DIO---Desafio-01)
-- [MDN — `background-clip`](https://developer.mozilla.org/pt-BR/docs/Web/CSS/background-clip)
 - [MDN — `clamp()`](https://developer.mozilla.org/pt-BR/docs/Web/CSS/clamp)
+- [MDN — `background-clip`](https://developer.mozilla.org/pt-BR/docs/Web/CSS/background-clip)
 - [MDN — `mask-composite`](https://developer.mozilla.org/pt-BR/docs/Web/CSS/mask-composite)
-- [MDN — unidades CSS](https://developer.mozilla.org/pt-BR/docs/Learn/CSS/Building_blocks/Values_and_units)
+- [MDN — unidades e valores CSS](https://developer.mozilla.org/pt-BR/docs/Learn/CSS/Building_blocks/Values_and_units)
+- [Fraunces (fonte variável)](https://fonts.google.com/specimen/Fraunces)
+- [Repositório original do desafio](https://github.com/digitalinnovationone/trilha-css-desafio-01)
 
 ---
 

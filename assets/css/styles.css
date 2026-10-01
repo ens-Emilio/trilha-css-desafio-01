@@ -1,93 +1,138 @@
 /* ==========================================================================
    styles.css — Landing page "Vida no Campo" (Raiz Viva)
-   Desafio 01 da Trilha de CSS da DIO · tema livre
+   Desafio 01 da Trilha de CSS da DIO · tema livre, reformulado
    --------------------------------------------------------------------------
    Arquitetura:
-     1. Tokens de design
-     2. Base
-     3. Acessibilidade (skip link, foco, movimento reduzido)
-     4. Banner
-     5. Conteúdo do curso
-     6. Cultive o futuro (parallax)
-     7. Desafios no campo
-     8. Rodapé
-     9. Responsividade
-    10. Alto contraste forçado
+     1. Fonte display auto-hospedada (Fraunces, variável)
+     2. Tokens de design
+     3. Base
+     4. Acessibilidade (skip link, foco, movimento reduzido)
+     5. Banner (hero)
+     6. Conteúdo do curso (módulos)
+     7. Cultive o futuro (parallax)
+     8. Desafios no campo
+     9. Rodapé
+    10. Responsividade
+    11. Alto contraste forçado
+
+   UNIDADES DE MEDIDA (requisito do desafio):
+     · Relativas → rem, em, vw, % e clamp() (tipografia fluida e
+       espaçamentos que acompanham a tela e a fonte do usuário);
+     · Absolutas → px (bordas de 1px, raios, sombras e detalhes fixos).
    ========================================================================== */
 
 /* ==========================================================================
-   1. TOKENS DE DESIGN
+   1. FONTE DISPLAY AUTO-HOSPEDADA
+   Fraunces é uma serifa variável: um único arquivo cobre todos os pesos.
+   Fonte ≠ biblioteca/framework — o CSS continua 100% próprio.
+   ========================================================================== */
+@font-face {
+    font-family: "Fraunces";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("../fonts/fraunces-latin.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+        U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+        U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: "Fraunces";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("../fonts/fraunces-latin-ext.woff2") format("woff2");
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+        U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+        U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* ==========================================================================
+   2. TOKENS DE DESIGN
    Cores, gradientes e medidas em um só lugar. Trocar o tema inteiro é
    alterar este bloco, em vez de caçar valores espalhados pelo arquivo.
-   Todos os contrastes foram conferidos com a fórmula de luminância da WCAG.
+   Contrastes conferidos pela fórmula de luminância da WCAG.
    ========================================================================== */
 :root {
-    /* Cores — paleta de campo: terra molhada, folha nova e sol baixo */
-    --cor-fundo: #0b1a10;          /* verde quase preto, o "chão" da página */
-    --cor-caixa: #1b2f22;          /* verde escuro dos painéis */
-    --cor-acento: #4ade80;         /* verde folha — 10,3:1 sobre o fundo */
-    --cor-acento-claro: #6ee7a8;   /* verde claro — 11,7:1 sobre o fundo */
-    --cor-sol: #fbbf24;            /* dourado do sol — 10,8:1 sobre o fundo */
-    --cor-texto: #f0fdf4;          /* branco esverdeado — 17,2:1 sobre o fundo */
-    --cor-texto-suave: #b9d8c4;
-    --cor-borda-suave: rgba(74, 222, 128, 0.45);
+    /* Cores — noite de campo: terra escura, folha nova e sol baixo */
+    --cor-fundo: #081409;           /* verde quase preto, o "chão" da página */
+    --cor-caixa: #12261a;           /* verde escuro dos painéis */
+    --cor-caixa-borda: rgba(134, 239, 172, 0.28);
+    --cor-acento: #86efac;          /* verde folha — 13,5:1 sobre o fundo */
+    --cor-acento-forte: #4ade80;    /* verde médio, para detalhes gráficos */
+    --cor-sol: #fbbf24;             /* dourado do sol — 11,5:1 sobre o fundo */
+    --cor-texto: #eef7ee;           /* branco esverdeado — 17,8:1 sobre o fundo */
+    --cor-texto-suave: #a9c7b2;     /* corpo secundário — 8,6:1 sobre o fundo */
 
     /* Gradientes */
-    --grad-titulo: linear-gradient(180deg, #a7f3d0 0%, #4ade80 55%, #22a35a 100%);
-    --grad-borda: linear-gradient(180deg, #6ee7a8 0%, #2f9e5a 100%);
+    --grad-titulo: linear-gradient(175deg, #f0fdf4 0%, #86efac 45%, #2fa860 100%);
+    --grad-borda: linear-gradient(180deg, #a7f3d0 0%, #2f9e5a 100%);
+    --grad-chip: linear-gradient(180deg, #86efac 0%, #4ade80 100%);
     --grad-banner: linear-gradient(
         180deg,
-        rgba(11, 26, 16, 0.78) 0%,
-        rgba(11, 26, 16, 0.42) 45%,
-        rgba(11, 26, 16, 0.88) 100%
+        rgba(8, 20, 9, 0.72) 0%,
+        rgba(8, 20, 9, 0.38) 45%,
+        rgba(8, 20, 9, 0.92) 100%
     );
     --grad-parallax: linear-gradient(
         90deg,
-        rgba(11, 26, 16, 0.9) 0%,
-        rgba(11, 26, 16, 0.55) 38%,
-        rgba(11, 26, 16, 0) 68%
+        rgba(8, 20, 9, 0.92) 0%,
+        rgba(8, 20, 9, 0.55) 38%,
+        rgba(8, 20, 9, 0) 68%
     );
     --grad-rodape: linear-gradient(
         180deg,
-        rgba(74, 222, 128, 0) 0%,
-        rgba(74, 222, 128, 0.18) 100%
+        rgba(134, 239, 172, 0) 0%,
+        rgba(134, 239, 172, 0.14) 100%
     );
 
-    /* Tipografia fluida: cresce com a tela entre um mínimo e um máximo,
-       sem media query e sem saltos bruscos de tamanho. */
-    --fonte-titulo-banner: clamp(1.9rem, 5vw, 3rem);
-    --fonte-titulo-secao: clamp(1.35rem, 3.5vw, 2rem);
-    --fonte-destaque: clamp(1.75rem, 4.5vw, 2.5rem);
+    /* Tipografia
+       Fonte de texto: 1rem = 16px (respeita a preferência do usuário).
+       Escala fluida: clamp(mínimo, preferido em vw, máximo) cresce com a
+       tela sem media query e sem saltos bruscos. */
+    --fonte-display: "Fraunces", Georgia, "Times New Roman", serif;
+    --fonte-corpo: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    --fonte-titulo-banner: clamp(2.4rem, 6.5vw, 4rem);
+    --fonte-titulo-secao: clamp(1.5rem, 3.5vw, 2.15rem);
+    --fonte-destaque: clamp(1.9rem, 4.5vw, 2.75rem);
 
-    /* Layout */
+    /* Layout
+       Larguras fixas do protótipo em px (unidade absoluta), fluidez por
+       clamp() e respiros relativos. Ritmo vertical em múltiplos de 8. */
     --largura-banner: 640px;
     --largura-conteudo: 800px;
     --largura-modulo: 530px;
-    --espaco-secao: clamp(60px, 9vw, 100px);
+    --espaco-secao: clamp(64px, 9vw, 112px);
     --respiro-lateral: 20px;
     --raio-pilula: 999px;
 }
 
 /* ==========================================================================
-   2. BASE
+   3. BASE
    ========================================================================== */
 body {
     background-color: var(--cor-fundo);
     color: var(--cor-texto);
-    line-height: 1.5;
+    font-family: var(--fonte-corpo);
+    /* 1.6 é unidade relativa sem unidade: 1,6× a fonte do elemento */
+    line-height: 1.6;
+}
+
+h1,
+h2 {
+    font-family: var(--fonte-display);
+    font-variation-settings: "opsz" 144;
 }
 
 h2 {
-    font-size: var(--fonte-titulo-secao);
     color: var(--cor-acento);
+    font-size: var(--fonte-titulo-secao);
     font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 24px;
+    line-height: 1.15;              /* relativa: 1,15× o tamanho da fonte */
+    letter-spacing: 0.02em;         /* em: relativa à própria fonte */
+    margin-bottom: 24px;            /* px: absoluto, detalhe fino */
     text-wrap: balance;
-    /* Títulos usam entrelinhamento apertado: texto grande precisa de menos
-       espaço entre linhas do que o corpo do texto. */
-    line-height: 1.15;
 }
 
 p {
@@ -100,7 +145,7 @@ section {
 }
 
 /* ==========================================================================
-   3. ACESSIBILIDADE
+   4. ACESSIBILIDADE
    ========================================================================== */
 
 /* Skip link: primeiro elemento focável da página.
@@ -147,16 +192,16 @@ section {
 }
 
 /* ==========================================================================
-   4. BANNER
+   5. BANNER (hero)
    ========================================================================== */
 .banner {
-    background-image: var(--grad-banner), url('../images/banner.svg');
+    background-image: var(--grad-banner), url("../images/banner.svg");
     background-size: cover;
     background-position: center bottom;
     background-repeat: no-repeat;
-    min-height: 600px;
-    padding: 60px var(--respiro-lateral);
-    border-bottom: 1px solid var(--cor-borda-suave);
+    min-height: 600px;              /* px: altura-base absoluta do hero */
+    padding: 64px var(--respiro-lateral);
+    border-bottom: 1px solid var(--cor-caixa-borda);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -170,15 +215,18 @@ section {
     text-align: center;
 }
 
+/* Medalhão do logo: anel duplo com folga — círculo externo tracejado */
 .banner .logo {
-    background-color: rgba(11, 26, 16, 0.55);
-    height: 260px;
-    width: 260px;
+    background-color: rgba(8, 20, 9, 0.55);
+    height: 248px;                  /* px: círculo perfeito exige igualdade */
+    width: 248px;
     max-width: 100%;
-    margin: 0 auto 16px;
+    margin: 0 auto 24px;
     border-radius: 50%;
     padding: 16px;
-    border: 1px solid var(--cor-borda-suave);
+    border: 1px solid var(--cor-caixa-borda);
+    outline: 1px dashed rgba(134, 239, 172, 0.35);
+    outline-offset: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -187,22 +235,23 @@ section {
 .banner .logo img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: contain;            /* mantém a arte completa, sem cortes */
 }
 
 .banner h1 {
     /* Cor sólida primeiro: fallback caso o navegador não saiba recortar
-       o texto pelo fundo. */
-    color: var(--cor-acento-claro);
+       o texto pelo fundo (requisito 7 do desafio). */
+    color: var(--cor-acento);
     font-size: var(--fonte-titulo-banner);
     font-weight: 900;
     text-transform: uppercase;
-    line-height: 1.1;
-    letter-spacing: 2px;
+    line-height: 1.05;
+    letter-spacing: 0.03em;
 }
 
 /* Texto em gradiente: melhoria progressiva.
-   Só aplica se o navegador souber recortar o fundo pelo texto. */
+   O fundo é recortado pelo formato dos glifos com -webkit-background-clip:
+   text (e o sinônimo padrão background-clip: text). */
 @supports ((-webkit-background-clip: text) or (background-clip: text)) {
     .banner h1 {
         background-image: var(--grad-titulo);
@@ -215,7 +264,7 @@ section {
 .banner p {
     font-size: clamp(1rem, 1.6vw, 1.15rem);
     color: var(--cor-texto);
-    margin: 16px 0 28px;
+    margin: 16px 0 32px;
 }
 
 /* --- Botão de chamada para ação ---
@@ -228,15 +277,16 @@ section {
 .banner .cta {
     position: relative;
     display: inline-block;
-    padding: 16px 36px;
-    color: var(--cor-acento-claro);
+    padding: 16px 40px;             /* px: alvo de toque ≥ 44×44 garantido */
+    color: var(--cor-acento);
     font-size: 1rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 0.2em;
     text-decoration: none;
     border-radius: var(--raio-pilula);
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease,
+        background-color 0.2s ease;
 }
 
 .banner .cta::before {
@@ -244,7 +294,7 @@ section {
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    padding: 2px;
+    padding: 2px;                   /* espessura do anel de borda */
     background-image: var(--grad-borda);
     /* Recorta o miolo da máscara, deixando só o anel da borda */
     -webkit-mask:
@@ -258,13 +308,20 @@ section {
     pointer-events: none;
 }
 
+/* Hover: o botão "levanta" com elevação e preenchimento suave */
 .banner .cta:hover {
-    background-color: rgba(74, 222, 128, 0.16);
+    background-color: rgba(134, 239, 172, 0.14);
     color: var(--cor-texto);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(47, 158, 90, 0.35);
+}
+
+.banner .cta:active {
+    transform: translateY(0);
 }
 
 /* ==========================================================================
-   5. CONTEÚDO DO CURSO
+   6. CONTEÚDO DO CURSO (módulos)
    ========================================================================== */
 #course-content {
     /* Soma o respiro lateral para o CONTEÚDO ter os 800px exatos, e não
@@ -273,42 +330,81 @@ section {
     text-align: center;
 }
 
-#course-content .modules-list {
-    list-style: none;
-    margin: 24px 0;
+#course-content > p {
+    color: var(--cor-texto-suave);
+    max-width: 65ch;                /* ch: largura de ~65 caracteres */
+    margin: 0 auto;
 }
 
+/* Fio decorativo sob o título, sem precisar de HTML extra */
+#course-content h2::after,
+#professional-challenges h2::after {
+    content: "";
+    display: block;
+    width: 56px;
+    height: 3px;
+    margin: 16px auto 0;
+    border-radius: var(--raio-pilula);
+    background-image: var(--grad-borda);
+}
+
+#course-content .modules-list {
+    margin: 40px 0 0;
+    display: grid;                  /* empilha os módulos com ritmo igual */
+    gap: 16px;
+}
+
+/* Cartão de módulo: pílula com borda que acende no hover.
+   O brilho interno (inset) simula a curvatura da pílula. */
 #course-content .modules-list .module {
-    color: var(--cor-texto);
     width: 100%;
     max-width: var(--largura-modulo);
-    margin: 0 auto 24px;
-    border: 1px solid var(--cor-acento);
+    margin: 0 auto;
+    border: 1px solid var(--cor-caixa-borda);
     background-color: var(--cor-caixa);
-    padding: 16px;
+    padding: 16px 24px;
     border-radius: var(--raio-pilula);
-    box-shadow: inset -5px 6px 8px rgba(0, 0, 0, 0.55);
+    box-shadow: inset 0 -8px 16px rgba(0, 0, 0, 0.35);
+    color: var(--cor-texto);
+    transition: border-color 0.2s ease, transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
+#course-content .modules-list .module:hover {
+    border-color: var(--cor-acento);
+    transform: translateY(-2px);
+    box-shadow: inset 0 -8px 16px rgba(0, 0, 0, 0.35),
+        0 10px 24px rgba(47, 158, 90, 0.22);
+}
+
+/* "Módulo 01:" vira um chip de destaque dentro do cartão */
 #course-content .modules-list .module span {
-    color: var(--cor-acento);
+    display: inline-block;
+    color: var(--cor-fundo);
+    background-image: var(--grad-chip);
     font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    margin-right: 12px;
+    border-radius: var(--raio-pilula);
 }
 
 /* ==========================================================================
-   6. CULTIVE O FUTURO (parallax)
+   7. CULTIVE O FUTURO (parallax)
    ========================================================================== */
 #transform-world {
     min-height: 560px;
     /* O gradiente à esquerda escurece a área do texto e garante leitura
        sobre a imagem; à direita a paisagem aparece livre. */
-    background-image: var(--grad-parallax), url('../images/campo.svg');
+    background-image: var(--grad-parallax), url("../images/campo.svg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border-top: 1px solid var(--cor-borda-suave);
-    border-bottom: 1px solid var(--cor-borda-suave);
-    padding: clamp(60px, 14vw, 200px);
+    border-top: 1px solid var(--cor-caixa-borda);
+    border-bottom: 1px solid var(--cor-caixa-borda);
+    padding: clamp(64px, 14vw, 200px);
     margin-inline: 0;
     max-width: none;
     display: flex;
@@ -316,17 +412,30 @@ section {
 }
 
 #transform-world p {
+    font-family: var(--fonte-display);
+    font-variation-settings: "opsz" 144;
     font-weight: 900;
     font-size: var(--fonte-destaque);
     text-transform: lowercase;
-    max-width: 250px;
-    line-height: 1.2;
-    color: var(--cor-texto);
-    text-shadow: 3px 2px var(--cor-sol);
+    max-width: 280px;
+    line-height: 1.15;
+    color: var(--cor-sol);          /* fallback sólido antes do recorte */
+    filter: drop-shadow(2px 2px 0 rgba(8, 20, 9, 0.9));
+}
+
+/* Mesma técnica do h1: o gradiente nasce no dourado do sol e desce para
+   o verde folha, recortado pelo formato das letras. */
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    #transform-world p {
+        background-image: linear-gradient(180deg, #fde68a 0%, #fbbf24 55%, #86efac 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
 }
 
 /* ==========================================================================
-   7. DESAFIOS NO CAMPO
+   8. DESAFIOS NO CAMPO
    ========================================================================== */
 #professional-challenges {
     max-width: calc(var(--largura-conteudo) + var(--respiro-lateral) * 2);
@@ -335,24 +444,38 @@ section {
 
 #professional-challenges img {
     margin: 32px auto;
-    border-radius: 12px;
-    border: 1px solid var(--cor-borda-suave);
+    border-radius: 16px;
+    border: 1px solid var(--cor-caixa-borda);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#professional-challenges img:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 32px 64px rgba(0, 0, 0, 0.55);
+}
+
+#professional-challenges > p {
+    color: var(--cor-texto-suave);
+    max-width: 65ch;
+    margin: 0 auto;
 }
 
 /* ==========================================================================
-   8. RODAPÉ
+   9. RODAPÉ
    ========================================================================== */
 footer {
-    padding: 60px var(--respiro-lateral);
+    padding: 64px var(--respiro-lateral);
     text-align: center;
     background-image: var(--grad-rodape);
-    border-top: 1px solid var(--cor-borda-suave);
+    border-top: 1px solid var(--cor-caixa-borda);
 }
 
 footer .rodape-logo {
     width: 300px;
     max-width: 100%;
     margin: 0 auto 16px;
+    opacity: 0.9;
 }
 
 footer p {
@@ -373,28 +496,35 @@ footer a:hover {
 }
 
 /* ==========================================================================
-   9. RESPONSIVIDADE
+   10. RESPONSIVIDADE
+   Reorganiza o conteúdo em cada ponto de quebra; nunca reduz a página
+   inteira proporcionalmente nem esconde ações essenciais.
    ========================================================================== */
 @media (max-width: 700px) {
     .banner {
         min-height: auto;
-        padding: 40px var(--respiro-lateral) 48px;
+        padding: 48px var(--respiro-lateral) 56px;
     }
 
     .banner .logo {
         height: 180px;
         width: 180px;
+        outline-offset: 8px;
     }
 
     .banner .cta {
-        padding: 14px 24px;
-        letter-spacing: 2px;
+        padding: 14px 28px;
+        letter-spacing: 0.15em;
         font-size: 0.9rem;
+    }
+
+    .banner p {
+        margin-bottom: 28px;
     }
 
     #transform-world {
         min-height: 420px;
-        padding: 60px 24px;
+        padding: 64px 24px;
     }
 
     #transform-world p {
@@ -415,12 +545,23 @@ footer a:hover {
    pode causar quebra estranha de linha */
 @media (max-width: 420px) {
     h2 {
-        letter-spacing: 1px;
+        letter-spacing: 0.01em;
+    }
+
+    #course-content .modules-list .module {
+        padding: 14px 16px;
+    }
+
+    /* Chip acima do texto do módulo quando a linha fica justa */
+    #course-content .modules-list .module span {
+        display: block;
+        width: fit-content;
+        margin: 0 auto 8px;
     }
 }
 
 /* ==========================================================================
-   10. ALTO CONTRASTE FORÇADO (Windows)
+   11. ALTO CONTRASTE FORÇADO (Windows)
    ========================================================================== */
 @media (forced-colors: active) {
     .banner .cta::before {
