@@ -11,17 +11,27 @@ Desafio 01 da [Trilha de CSS da DIO](https://www.dio.me/), com **tema livre**.
 **Raiz Viva** é uma escola fictícia de agricultura sustentável. Esta é a landing
 page de inscrição da formação **Vida no Campo**.
 
+### 🔗 Site no ar
+
+**https://ens-emilio.github.io/trilha-css-desafio-01/**
+
+Publicado pelo GitHub Pages a partir da branch `main`.
+
 ---
 
 ## Duas versões neste repositório
 
 | Versão | Onde | O que é |
 | --- | --- | --- |
-| **Vida no Campo** (atual) | branch `main` | Tema próprio, tipografia Fraunces, refinado |
+| **Vida no Campo** (atual) | branch `main` — [ver ao vivo](https://ens-emilio.github.io/trilha-css-desafio-01/) | Tema próprio, tipografia Fraunces, refinado |
 | **Reprodução da DIO** | branch [`versao-dio`](https://github.com/ens-Emilio/trilha-css-desafio-01/tree/versao-dio) | Layout fiel ao protótipo do desafio, azul sobre preto |
 
 A branch `versao-dio` preserva a primeira versão, que reproduz o layout da DIO
 com fidelidade e serve de comparação direta com o gabarito oficial.
+
+> As duas usam o mesmo HTML base e a mesma arquitetura de CSS — compará-las
+> mostra exatamente o que muda ao trocar paleta, tipografia e conteúdo sem
+> alterar a estrutura.
 
 ---
 
